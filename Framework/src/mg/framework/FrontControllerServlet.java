@@ -5,74 +5,69 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import mg.framework.util.ClasseUtilitaire;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FrontControllerServlet extends HttpServlet {
 
-        @Override
-        protected void doGet(
-                        HttpServletRequest request,
-                        HttpServletResponse response)
-                        throws ServletException, IOException {
+    private ClasseUtilitaire util = new ClasseUtilitaire();
+    private List<String> controllers = new ArrayList<>();
 
-                String uri = request.getRequestURI();
-                String context = request.getContextPath();
+    @Override
+    public void init() throws ServletException {
 
-                String path = uri.substring(context.length());
+        try {
 
-                response.setContentType("text/plain");
+            controllers =  util.findControllers("controller");
 
-                response.getWriter().println("=== Front Controller ===");
-                response.getWriter().println();
+            
+        } catch (Exception e) {
+            throw new ServletException(e);
+        }
+    }
 
-                response.getWriter().println(
-                                "Méthode HTTP : "
-                                                + request.getMethod());
+    @Override
+    protected void doGet(
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
 
-                response.getWriter().println(
-                                "URI : "
-                                                + uri);
+        if (controllers == null || controllers.isEmpty()) {
 
-                response.getWriter().println(
-                                "Context Path : "
-                                                + context);
+            response.getWriter().println(
+                    "Aucun controller trouve");
 
-                response.getWriter().println(
-                                "Path : "
-                                                + path);
+            return;
         }
 
-        @Override
-        protected void doPost(
-                        HttpServletRequest request,
-                        HttpServletResponse response)
-                        throws ServletException, IOException {
+        for (String controller : controllers) {
 
-                String uri = request.getRequestURI();
-                String context = request.getContextPath();
-
-                String path = uri.substring(context.length());
-
-                response.setContentType("text/plain");
-
-                response.getWriter().println("=== Front Controller ===");
-                response.getWriter().println();
-
-                response.getWriter().println(
-                                "Méthode HTTP : "
-                                                + request.getMethod());
-
-                response.getWriter().println(
-                                "URI : "
-                                                + uri);
-
-                response.getWriter().println(
-                                "Context Path : "
-                                                + context);
-
-                response.getWriter().println(
-                                "Path : "
-                                                + path);
+            response.getWriter().println(controller);
         }
+    }
+
+    @Override
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+
+        if (controllers == null || controllers.isEmpty()) {
+
+            response.getWriter().println(
+                    "Aucun controller trouve");
+
+            return;
+        }
+
+        for (String controller : controllers) {
+
+            response.getWriter().println(controller);
+        }
+    }
+
 
 }
