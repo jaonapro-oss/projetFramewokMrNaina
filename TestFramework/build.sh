@@ -9,13 +9,13 @@ set -e
 # 🔹 Configuration
 APP_NAME="TestFramework"
 
-PROJECT_DIR="/home/jaona/Bureau/MrNaina/TestFramework"
+PROJECT_DIR="/home/jaona/Bureau/ProjetFrameworkMrNaina/TestFramework"
 
 SRC_DIR="$PROJECT_DIR/java"
 WEB_DIR="$PROJECT_DIR/web"
 LIB_DIR="$PROJECT_DIR/lib"
 
-FRAMEWORK_JAR="/home/jaona/Bureau/MrNaina/Framework/dist/FrameworkMVC.jar"
+FRAMEWORK_JAR="/home/jaona/Bureau/ProjetFrameworkMrNaina/Framework/dist/FrameworkMVC.jar"
 
 BUILD_DIR="$PROJECT_DIR/build"
 

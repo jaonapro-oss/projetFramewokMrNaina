@@ -7,7 +7,7 @@
 # 🔹 Configuration
 FRAMEWORK_NAME="FrameworkMVC"
 
-PROJECT_DIR="/home/jaona/Bureau/MrNaina/Framework"
+PROJECT_DIR="/home/jaona/Bureau/ProjetFrameworkMrNaina/Framework"
 SRC_DIR="$PROJECT_DIR/src"
 LIB_DIR="$PROJECT_DIR/lib"
 
